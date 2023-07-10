@@ -27,12 +27,13 @@ public class Lamp : MonoBehaviour
     [SerializeField] float offsetRadius = 0.1f;
 
     // TODO: Make sure this variable goes in this script
-    [SerializeField] int oilCans = 3;
     [SerializeField] float maxOilDuration = 10.0f;
+
+    CharacterStatus characterStatus;
 
     Light2D lampLight;
 
-    float oilDuration = 10.0f;
+    float oilDuration;
 
     // Light intensity lerping
     float intensityTime = 1.0f;
@@ -54,7 +55,9 @@ public class Lamp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        characterStatus = GetComponentInParent<CharacterStatus>();
         lampLight = GetComponentInChildren<Light2D>();
+        oilDuration = maxOilDuration;
     }
 
     // Update is called once per frame
@@ -164,12 +167,12 @@ public class Lamp : MonoBehaviour
 
     void ConsumeOil()
     {
-        if (oilCans > 0) {
+        if (characterStatus.oilCans > 0) {
             oilDuration -= Time.deltaTime;
             if (oilDuration <= 1.0f) {
                 //state = LampState.RUNNING_OUT;
                 if (oilDuration <= 0.0f) {
-                    oilCans--;
+                    characterStatus.oilCans--;
                     oilDuration = maxOilDuration;
                     state = LampState.TURNING_ON;
                 }
