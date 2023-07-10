@@ -22,11 +22,34 @@ public class Lamp : MonoBehaviour
     [SerializeField] LampState state = LampState.ON;
     [SerializeField] KeyCode lampKey = KeyCode.Space;
 
-    [SerializeField] float flickerProbability = 50.0f;
+    [SerializeField] float flickerTime = 0.3f;
     [SerializeField] float flickerMinIntensity = 0.7f;
     [SerializeField] float offsetRadius = 0.1f;
 
+    // TODO: Make sure this variable goes in this script
+    [SerializeField] int oilCans = 3;
+    [SerializeField] float maxOilDuration = 10.0f;
+
     Light2D lampLight;
+
+    float oilDuration = 10.0f;
+
+    // Light intensity lerping
+    float intensityTime = 1.0f;
+    float intensityDuration = 0.0f;
+    float startIntensity;
+    float endIntensity;
+    // Color lerping
+    float colorTime = 1.0f;
+    float colorDuration = 0.0f;
+    Color startColor;
+    Color endColor;
+    // Displacement lerping
+    float displacementTime = 1.0f;
+    float displacementDuration = 0.0f;
+    Vector3 startDisplacement = Vector3.zero;
+    Vector3 endDisplacement = Vector3.zero;
+    Vector3 displacement;
 
     // Start is called before the first frame update
     void Start()
@@ -64,7 +87,10 @@ public class Lamp : MonoBehaviour
                 TurnOff();
                 break;
             case LampState.ON:
-                LightFlicker();
+                ConsumeOil();
+                PositionFlicker();
+                ColorFlicker();
+                IntensityFlicker();
                 break;
         }
     }
@@ -91,21 +117,65 @@ public class Lamp : MonoBehaviour
         }
     }
 
-    void LightFlicker()
+    void IntensityFlicker()
     {
-        // Use random numbers to determine when and how much the light flickers
-        if (UnityEngine.Random.Range(0, 100) < flickerProbability) {
-            lampLight.intensity = Random.Range(flickerMinIntensity, 1.0f);
+        if(intensityTime > intensityDuration) {
+            intensityTime = 0.0f;
+            intensityDuration = Random.Range(0.1f, flickerTime);
+            startIntensity = lampLight.intensity;
+            endIntensity = Random.Range(flickerMinIntensity, 1.0f);
         }
-        // Slightly change the position of the light
-        if (UnityEngine.Random.Range(0, 100) < flickerProbability) {
-            Vector2 offset = Random.insideUnitCircle * offsetRadius;
-            // The light position is displaced with respect to this object
-            lampLight.transform.position = new Vector3(
-                transform.position.x + offset.x,
-                transform.position.y + offset.y,
-                transform.position.z
-            );
+        lampLight.intensity = Mathf.Lerp(startIntensity,
+                                         endIntensity,
+                                         intensityTime / intensityDuration);
+        intensityTime += Time.deltaTime;
+    }
+
+    void ColorFlicker()
+    {
+        if(colorTime > colorDuration) {
+            colorTime = 0.0f;
+            colorDuration = Random.Range(0.1f, flickerTime);
+            startColor = lampLight.color;
+            // Stay within a yellowish range
+            endColor = new Color(1.0f, Random.Range(0.8f, 1.0f), 0.6f);
+        }
+        lampLight.color = Color.Lerp(startColor,
+                                     endColor,
+                                     colorTime / colorDuration);
+        colorTime += Time.deltaTime;
+    }
+
+    void PositionFlicker()
+    {
+        if(displacementTime > displacementDuration) {
+            displacementTime = 0.0f;
+            displacementDuration = Random.Range(0.1f, flickerTime);
+            startDisplacement = endDisplacement;
+            endDisplacement = Random.insideUnitCircle * offsetRadius;
+        }
+        displacement = Vector3.Lerp(startDisplacement,
+                                    endDisplacement,
+                                    displacementTime / displacementDuration);
+        // Apply the displacement on the current position of the light
+        lampLight.transform.position = transform.position + displacement;
+        displacementTime += Time.deltaTime;
+    }
+
+    void ConsumeOil()
+    {
+        if (oilCans > 0) {
+            oilDuration -= Time.deltaTime;
+            if (oilDuration <= 1.0f) {
+                //state = LampState.RUNNING_OUT;
+                if (oilDuration <= 0.0f) {
+                    oilCans--;
+                    oilDuration = maxOilDuration;
+                    state = LampState.TURNING_ON;
+                }
+            }
+        } else {
+            state = LampState.TURNING_OFF;
         }
     }
 }

@@ -10040,7 +10040,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.55
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0.6, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -10126,9 +10126,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   lampKey: 32
-  flickerProbability: 25
-  flickerMinIntensity: 0.7
+  flickerTime: 0.3
+  flickerMinIntensity: 0.5
   offsetRadius: 0.01
+  oilCans: 3
+  maxOilDuration: 10
 --- !u!43 &1806164024
 Mesh:
   m_ObjectHideFlags: 0
