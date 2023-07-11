@@ -1,5 +1,5 @@
 /*
-Control the state and behaviour of the lamp
+Control the behaviour of the camp fire
 
 Giberto Echeverria
 2023-07-08
@@ -8,24 +8,16 @@ Giberto Echeverria
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public enum LampState
-{
-    ON,
-    OFF,
-    TURNING_ON,
-    TURNING_OFF,
-    RUNNING_OUT
-}
-
-public class Lamp : MonoBehaviour
+public class CampFire : MonoBehaviour
 {
     [SerializeField] LampState state = LampState.ON;
-    [SerializeField] KeyCode lampKey = KeyCode.Space;
 
     [SerializeField] float flickerTime = 0.3f;
     [SerializeField] float flickerMinIntensity = 0.7f;
     [SerializeField] float offsetRadius = 0.1f;
+    [SerializeField] KeyCode fireKey = KeyCode.F;
 
+    // TODO: Make sure this variable goes in this script
     [SerializeField] float maxOilDuration = 10.0f;
 
     CharacterStatus characterStatus;
@@ -54,7 +46,7 @@ public class Lamp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterStatus = GetComponentInParent<CharacterStatus>();
+        characterStatus = GameObject.FindWithTag("Player").GetComponent<CharacterStatus>();
         lampLight = GetComponentInChildren<Light2D>();
         oilDuration = maxOilDuration;
     }
@@ -62,7 +54,7 @@ public class Lamp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(lampKey)) {
+        if(Input.GetKeyDown(fireKey)) {
             ToggleLamp();
         }
     }
