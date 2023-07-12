@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6966605663249528202
 SpriteRenderer:
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -616345651
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -885121167, guid: 1253a4b7251763b6aa7467649c9c432d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -141,13 +141,14 @@ MonoBehaviour:
   m_SelfShadows: 0
   m_ApplyToSortingLayers: 834c5218e7427778e3ad503fcd4f43db00000000b334f874
   m_ShapePath:
-  - {x: -0.100000024, y: -0.095, z: 0}
-  - {x: -0.100000024, y: 0.095, z: 0}
-  - {x: 0.099999994, y: 0.095, z: 0}
-  - {x: 0.099999994, y: -0.095, z: 0}
-  m_ShapePathHash: 0
+  - {x: -0.09788781, y: -0.02161739, z: 0}
+  - {x: 0.00022982806, y: 0.09916802, z: 0}
+  - {x: 0.102023646, y: -0.013297541, z: 0}
+  - {x: 0.03735111, y: -0.085288934, z: 0}
+  - {x: -0.043541774, y: -0.08146061, z: 0}
+  m_ShapePathHash: -1344271472
   m_Mesh: {fileID: 0}
-  m_InstanceId: -718600
+  m_InstanceId: 109778
   m_LocalBounds:
-    m_Center: {x: -0.000000014901161, y: 0, z: 0}
-    m_Extent: {x: 0.10000001, y: 0.095, z: 0}
+    m_Center: {x: 0.002067916, y: 0.006939538, z: 0}
+    m_Extent: {x: 0.09995572, y: 0.09222847, z: 0}

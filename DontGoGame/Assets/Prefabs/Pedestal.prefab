@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4007544269394206778}
   - component: {fileID: 4682377254649968110}
   - component: {fileID: 7462372365579054138}
+  - component: {fileID: 5963414558785845705}
   m_Layer: 0
   m_Name: Pedestal
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4682377254649968110
 SpriteRenderer:
@@ -130,3 +131,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.125, y: 0.14494789}
   m_EdgeRadius: 0
+--- !u!114 &5963414558785845705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2867077395657204635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 834c5218c770d6c9e7427778e3ad503fcd4f43dbeb9e3fc700000000b334f874
+  m_ShapePath:
+  - {x: -0.4988199, y: 0.45555118, z: 0}
+  - {x: -0.5123657, y: 1.2553105, z: 0}
+  - {x: -0.24866867, y: 1.5201025, z: 0}
+  - {x: 0.30217454, y: 1.5188867, z: 0}
+  - {x: 0.51650995, y: 1.2749842, z: 0}
+  - {x: 0.52507126, y: 0.42678717, z: 0}
+  - {x: 0.2315136, y: 0.049218953, z: 0}
+  - {x: -0.21358979, y: 0.06066841, z: 0}
+  m_ShapePathHash: 253252152
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -528568
+  m_LocalBounds:
+    m_Center: {x: 0.0063527822, y: 0.78466076, z: 0}
+    m_Extent: {x: 0.5187185, y: 0.7354418, z: 0}

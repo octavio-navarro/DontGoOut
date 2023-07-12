@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 638242155285496901}
   - component: {fileID: 1055989596562017181}
   - component: {fileID: 3051768933907053278}
+  - component: {fileID: -8643683680434845929}
   m_Layer: 0
   m_Name: Barrel_yellow
   m_TagString: Untagged
@@ -130,3 +131,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.78125, y: 0.043679237}
   m_EdgeRadius: 0
+--- !u!114 &-8643683680434845929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814780454829293455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 834c5218c770d6c9e7427778e3ad503fcd4f43dbeb9e3fc700000000b334f874
+  m_ShapePath:
+  - {x: -0.18986535, y: 0.04102409, z: 0}
+  - {x: -0.3893546, y: 0.42894483, z: 0}
+  - {x: -0.17792404, y: 0.80134565, z: 0}
+  - {x: 0.182639, y: 0.8033013, z: 0}
+  - {x: 0.3881544, y: 0.43014324, z: 0}
+  - {x: 0.1856991, y: 0.044055223, z: 0}
+  m_ShapePathHash: 969440349
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 45860
+  m_LocalBounds:
+    m_Center: {x: -0.00060009956, y: 0.42216268, z: 0}
+    m_Extent: {x: 0.3887545, y: 0.3811386, z: 0}
