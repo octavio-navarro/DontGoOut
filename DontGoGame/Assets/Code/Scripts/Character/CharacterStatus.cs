@@ -45,13 +45,17 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
-    void RecoverSanity(int amount)
+    public void RecoverSanity(int amount)
     {
         if (isSafe && oilCans >= 3) {
             oilCans -= 3;
             sanity += amount;
             if (sanity > maxSanity) {
                 sanity = maxSanity;
+            }
+            health += amount;
+            if (health > maxHealth) {
+                health = maxHealth;
             }
         }
     }
