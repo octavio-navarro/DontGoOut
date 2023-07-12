@@ -43,6 +43,9 @@ TagManager:
   - name: Background
     uniqueID: 408046723
     locked: 0
+  - name: HouseFloor
+    uniqueID: 3386273991
+    locked: 0
   - name: Decorations
     uniqueID: 2021081831
     locked: 0
@@ -51,6 +54,9 @@ TagManager:
     locked: 0
   - name: Items
     uniqueID: 3678621645
+    locked: 0
+  - name: LampCage
+    uniqueID: 3342835435
     locked: 0
   - name: Default
     uniqueID: 0

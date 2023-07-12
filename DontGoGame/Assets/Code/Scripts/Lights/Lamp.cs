@@ -54,7 +54,7 @@ public class Lamp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterStatus = GetComponentInParent<CharacterStatus>();
+        characterStatus = GameObject.FindWithTag("Player").GetComponent<CharacterStatus>();
         lampLight = GetComponentInChildren<Light2D>();
         oilDuration = maxOilDuration;
     }
