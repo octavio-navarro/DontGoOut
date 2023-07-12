@@ -24,6 +24,7 @@ public class Lamp : MonoBehaviour
 
     [SerializeField] float flickerTime = 0.3f;
     [SerializeField] float flickerMinIntensity = 0.7f;
+    [SerializeField] float flickerMaxIntensity = 1.1f;
     [SerializeField] float offsetRadius = 0.1f;
 
     [SerializeField] float maxOilDuration = 10.0f;
@@ -71,6 +72,10 @@ public class Lamp : MonoBehaviour
     {
         switch(state) {
             case LampState.ON:
+                intensityTime = 0.0f;
+                intensityDuration = 0.1f;
+                startIntensity = lampLight.intensity;
+                endIntensity = flickerMaxIntensity * 2;
                 state = LampState.TURNING_OFF;
                 break;
             case LampState.OFF:
@@ -99,11 +104,12 @@ public class Lamp : MonoBehaviour
 
     void TurnOn()
     {
-        // Increase the intensity of the light
-        lampLight.intensity += 0.1f;
-        // Check if the light is at full intensity
-        if (lampLight.intensity >= 1.0f) {
-            lampLight.intensity = 1.0f;
+        // Lerp into a higher intensity, then go to the normal state
+        lampLight.intensity = Mathf.Lerp(startIntensity,
+                                         endIntensity,
+                                         intensityTime / intensityDuration);
+        intensityTime += Time.deltaTime;
+        if(intensityTime > intensityDuration) {
             state = LampState.ON;
         }
     }
@@ -125,7 +131,7 @@ public class Lamp : MonoBehaviour
             intensityTime = 0.0f;
             intensityDuration = Random.Range(0.1f, flickerTime);
             startIntensity = lampLight.intensity;
-            endIntensity = Random.Range(flickerMinIntensity, 1.0f);
+            endIntensity = Random.Range(flickerMinIntensity, flickerMaxIntensity);
         }
         lampLight.intensity = Mathf.Lerp(startIntensity,
                                          endIntensity,
