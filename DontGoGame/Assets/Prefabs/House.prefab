@@ -194,7 +194,7 @@ MonoBehaviour:
   - {x: 2, y: 0, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 262186
+  m_InstanceId: 425814
   m_LocalBounds:
     m_Center: {x: 0, y: 2.28125, z: 0}
     m_Extent: {x: 2, y: 2.28125, z: 0}
@@ -296,6 +296,14 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 2518818618440808933, guid: 0160aa6ed44badb83a5591b65c111a29, type: 3}
+      propertyPath: m_Size.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2518818618440808933, guid: 0160aa6ed44badb83a5591b65c111a29, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2739320034090012887, guid: 0160aa6ed44badb83a5591b65c111a29, type: 3}
       propertyPath: m_Name
       value: ExitScene
@@ -314,7 +322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5071943276062988948, guid: 0160aa6ed44badb83a5591b65c111a29, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5071943276062988948, guid: 0160aa6ed44badb83a5591b65c111a29, type: 3}
       propertyPath: m_LocalPosition.z
