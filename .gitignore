@@ -76,3 +76,5 @@ crashlytics-build.properties
 
 # MAC temp directory
 __MACOSX
+
+.gitconfig
