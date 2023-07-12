@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6361121566174755890}
   - component: {fileID: 3115295378358934724}
   - component: {fileID: 6160576326930067289}
+  - component: {fileID: 3925785914484743478}
   m_Layer: 0
   m_Name: House_blocked
   m_TagString: Untagged
@@ -168,6 +169,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3925785914484743478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2538157213770106556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 834c5218c770d6c9e7427778e3ad503fcd4f43dbeb9e3fc700000000b334f874
+  m_ShapePath:
+  - {x: -2, y: 0, z: 0}
+  - {x: -2, y: 4.5625, z: 0}
+  - {x: 2, y: 4.5625, z: 0}
+  - {x: 2, y: 0, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -519712
+  m_LocalBounds:
+    m_Center: {x: 0, y: 2.28125, z: 0}
+    m_Extent: {x: 2, y: 2.28125, z: 0}
 --- !u!1001 &102992877530308661
 PrefabInstance:
   m_ObjectHideFlags: 0

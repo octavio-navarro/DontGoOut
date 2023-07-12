@@ -45,17 +45,23 @@ TagManager:
   - name: Background
     uniqueID: 408046723
     locked: 0
+  - name: HouseFloor
+    uniqueID: 3386273991
+    locked: 0
   - name: Decorations
     uniqueID: 2021081831
     locked: 0
   - name: Obstacles
     uniqueID: 1062252003
     locked: 0
-  - name: Items
-    uniqueID: 3678621645
+  - name: LampCage
+    uniqueID: 3342835435
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Items
+    uniqueID: 3678621645
     locked: 0
   - name: Overlay
     uniqueID: 1962423475
