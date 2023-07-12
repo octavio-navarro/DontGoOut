@@ -52,14 +52,14 @@ TagManager:
   - name: Obstacles
     uniqueID: 1062252003
     locked: 0
-  - name: Items
-    uniqueID: 3678621645
-    locked: 0
   - name: LampCage
     uniqueID: 3342835435
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Items
+    uniqueID: 3678621645
     locked: 0
   - name: Overlay
     uniqueID: 1962423475

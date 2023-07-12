@@ -58,7 +58,7 @@ public class CharacterStatus : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("OilCan")) {
+        if (other.CompareTag("OilCan") && oilCans < maxOilCans) {
             if (oilCans < maxOilCans) {
                 oilCans++;
                 Destroy(other.gameObject);
