@@ -11,14 +11,14 @@ using UnityEngine;
 public class CharacterMotion : MonoBehaviour
 {
     [SerializeField] float speed;
-    [SerializeField] Transform lamp;
+    [SerializeField] Transform lampTransform;
     [SerializeField] Vector3 lampOffset;
     [SerializeField] Vector3 lampMovementMultiplier;
 
     Rigidbody2D rb2d;
     Animator animator;
     Vector3 move;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +39,7 @@ public class CharacterMotion : MonoBehaviour
         animator.SetFloat("move_y", move.y);
 
         // Place the lamp in front of the player
-        lamp.position = transform.position + lampOffset
+        lampTransform.position = transform.position + lampOffset
                         + Vector3.Scale(move, lampMovementMultiplier);
 
         rb2d.velocity = move * speed;

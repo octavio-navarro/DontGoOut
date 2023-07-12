@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum MonsterStates
+{
+    Idle, Search, Chase, Attack
+}
+
 public class Monster_FSM : MonoBehaviour
 {
-    enum States
-    {
-        Idle, Search, Chase, Attack
-    }
-
     [SerializeField] float rayLength = 1.0f;
     [SerializeField] Transform targetPosition;
     [SerializeField] Transform originPosition;
-    [SerializeField] States currentState = States.Idle;
+    [SerializeField] public MonsterStates currentState = MonsterStates.Idle;
     [SerializeField] float waitTillNextChase = 2f, waitTillNextSearch = 3f, closeDistance = 7f;
     [SerializeField] Vector3 currentTarget;
+    [SerializeField] float randomRadius = 3f;
+
     Vector3 rayDirection = Vector3.right;
 
     NavMeshAgent agent;
@@ -23,6 +25,7 @@ public class Monster_FSM : MonoBehaviour
     Animator animator;
 
     bool playerLos = false, close = false;
+    public LampState lampState;
 
     IEnumerator waitSearchCoroutine = null, updateTargetCoroutine = null;
 
@@ -47,7 +50,7 @@ public class Monster_FSM : MonoBehaviour
 
         switch(currentState)
         {
-            case States.Idle:
+            case MonsterStates.Idle:                
                 if(waitSearchCoroutine == null)
                 {
                     waitSearchCoroutine = WaitTillNextChase();
@@ -55,15 +58,15 @@ public class Monster_FSM : MonoBehaviour
                 }
                 break;
 
-            case States.Search:
+            case MonsterStates.Search:
                 UpdateSearch();
                 break;
 
-            case States.Chase:
+            case MonsterStates.Chase:
                 UpdateChase();
                 break;
                 
-            case States.Attack:
+            case MonsterStates.Attack:
                 UpdateAttack();
                 break;
         }
@@ -74,7 +77,8 @@ public class Monster_FSM : MonoBehaviour
     IEnumerator WaitTillNextChase()
     {
         yield return new WaitForSeconds(waitTillNextChase);
-        currentState = States.Search;
+        currentState = MonsterStates.Search;
+        agent.isStopped = false;
         StartCoroutine(updateTargetCoroutine);
     }
 
@@ -83,7 +87,14 @@ public class Monster_FSM : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(waitTillNextSearch);
-            currentTarget = targetPosition.position;
+
+            NavMeshHit hit = new NavMeshHit();
+            Vector3 randomPoint = targetPosition.position + Random.insideUnitSphere * randomRadius;
+            
+            if(NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.GetAreaFromName("Walkable")))
+                currentTarget = hit.position;
+            else
+                currentTarget = targetPosition.position + new Vector3(Random.Range(-randomRadius, randomRadius), Random.Range(-randomRadius, randomRadius), 0);
             agent.SetDestination(currentTarget);
         }
     }
@@ -94,7 +105,7 @@ public class Monster_FSM : MonoBehaviour
         
         if(playerLos && distance <= closeDistance)
         {
-            currentState = States.Chase;
+            currentState = MonsterStates.Chase;
             StopCoroutine(updateTargetCoroutine);
         }
     }
@@ -105,18 +116,18 @@ public class Monster_FSM : MonoBehaviour
 
         if(!playerLos)
         {
-            currentState = States.Search;
+            currentState = MonsterStates.Search;
             StartCoroutine(updateTargetCoroutine);
         }
         else if(Vector3.Distance(transform.position, targetPosition.position) < 1.0f)
-            currentState = States.Attack;
+            currentState = MonsterStates.Attack;
     }
 
     void UpdateAttack()
     {
         Debug.Log("Attack");
         waitSearchCoroutine = null;
-        currentState = States.Idle;
+        currentState = MonsterStates.Idle;
     }
 
     private void FixedUpdate() 

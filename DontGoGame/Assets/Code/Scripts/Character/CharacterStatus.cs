@@ -15,7 +15,7 @@ public class CharacterStatus : MonoBehaviour
     [SerializeField] int maxHealth = 100;
     [SerializeField] public int oilCans = 3;
     [SerializeField] int maxOilCans = 6;
-    [SerializeField] int sanity = 100;
+    [SerializeField] float sanity = 100;
     [SerializeField] int maxSanity = 100;
     [SerializeField] bool isSafe = false;
 
@@ -37,7 +37,7 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
-    void DrainSanity(int amount)
+    public void DrainSanity(float amount)
     {
         sanity -= amount;
         if (sanity < 0) {
@@ -45,7 +45,7 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
-    void RecoverSanity(int amount)
+    public void RecoverSanity(float amount)
     {
         if (isSafe && oilCans >= 3) {
             oilCans -= 3;

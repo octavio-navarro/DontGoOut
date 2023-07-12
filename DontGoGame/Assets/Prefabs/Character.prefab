@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2529289199611707188}
   - component: {fileID: 4184328869143595978}
   - component: {fileID: 8607332168088961471}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,8 +34,9 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7280877123754796272}
+  - {fileID: 6876955054414505923}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2953102644114372161
 MonoBehaviour:
@@ -52,6 +53,7 @@ MonoBehaviour:
   speed: 10
   lamp: {fileID: 7280877123754796272}
   lampOffset: {x: 1, y: 0, z: 0}
+  lampMovementMultiplier: {x: 0, y: 0, z: 0}
 --- !u!212 &3327427776106158006
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -197,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7280877123754796272}
   - component: {fileID: 5337084304095896667}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,3 +273,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7463234060192716730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6876955054414505923}
+  m_Layer: 7
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6876955054414505923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7463234060192716730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.37, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7963153595252952821}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
