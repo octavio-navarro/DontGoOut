@@ -21,6 +21,13 @@ public class SceneChanges : MonoBehaviour
                 // Store the reference to the house entered
                 PlayerPrefs.SetInt("HouseIndex", houseIndex);
             }
+
+            // Store the player status variables
+            CharacterStatus playerStatus = other.GetComponent<CharacterStatus>();
+            PlayerPrefs.SetInt("Health", playerStatus.health);
+            PlayerPrefs.SetInt("OilCans", playerStatus.oilCans);
+            PlayerPrefs.SetInt("Sanity", playerStatus.sanity);
+
             // Change to the new scene
             SceneManager.LoadScene(sceneName);
         }
