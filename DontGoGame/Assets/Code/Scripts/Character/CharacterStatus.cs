@@ -11,12 +11,12 @@ using UnityEngine;
 
 public class CharacterStatus : MonoBehaviour
 {
-    [SerializeField] int health = 100;
-    [SerializeField] int maxHealth = 100;
+    [SerializeField] public int health = 100;
+    [SerializeField] public int maxHealth = 100;
     [SerializeField] public int oilCans = 3;
-    [SerializeField] int maxOilCans = 6;
-    [SerializeField] int sanity = 100;
-    [SerializeField] int maxSanity = 100;
+    [SerializeField] public int maxOilCans = 6;
+    [SerializeField] public int sanity = 100;
+    [SerializeField] public int maxSanity = 100;
     [SerializeField] bool isSafe = false;
 
     // Start is called before the first frame update
@@ -45,13 +45,17 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
-    void RecoverSanity(int amount)
+    public void RecoverSanity(int amount)
     {
         if (isSafe && oilCans >= 3) {
             oilCans -= 3;
             sanity += amount;
             if (sanity > maxSanity) {
                 sanity = maxSanity;
+            }
+            health += amount;
+            if (health > maxHealth) {
+                health = maxHealth;
             }
         }
     }

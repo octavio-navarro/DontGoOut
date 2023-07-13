@@ -5,8 +5,6 @@ Gilberto Echeverria
 2023-07-12
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
