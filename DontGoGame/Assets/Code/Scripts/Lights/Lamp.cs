@@ -28,6 +28,7 @@ public class Lamp : MonoBehaviour
     [SerializeField] float offsetRadius = 0.1f;
 
     [SerializeField] float maxOilDuration = 10.0f;
+    [SerializeField] int oilRequired = 1;
 
     CharacterStatus characterStatus;
 
@@ -55,7 +56,11 @@ public class Lamp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterStatus = GameObject.FindWithTag("Player").GetComponent<CharacterStatus>();
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null) {
+            characterStatus = player.GetComponent<CharacterStatus>();
+        }
+
         lampLight = GetComponentInChildren<Light2D>();
         oilDuration = maxOilDuration;
     }
@@ -72,13 +77,14 @@ public class Lamp : MonoBehaviour
     {
         switch(state) {
             case LampState.ON:
+                state = LampState.TURNING_OFF;
+                break;
+            case LampState.OFF:
+                // Initialize the variables for the turn on lerp
                 intensityTime = 0.0f;
                 intensityDuration = 0.1f;
                 startIntensity = lampLight.intensity;
                 endIntensity = flickerMaxIntensity * 2;
-                state = LampState.TURNING_OFF;
-                break;
-            case LampState.OFF:
                 state = LampState.TURNING_ON;
                 break;
         }
@@ -94,7 +100,9 @@ public class Lamp : MonoBehaviour
                 TurnOff();
                 break;
             case LampState.ON:
-                ConsumeOil();
+                if (characterStatus != null) {
+                    ConsumeOil();
+                }
                 PositionFlicker();
                 ColorFlicker();
                 IntensityFlicker();
@@ -177,7 +185,7 @@ public class Lamp : MonoBehaviour
             if (oilDuration <= 1.0f) {
                 //state = LampState.RUNNING_OUT;
                 if (oilDuration <= 0.0f) {
-                    characterStatus.oilCans--;
+                    characterStatus.oilCans -= oilRequired;
                     oilDuration = maxOilDuration;
                     state = LampState.TURNING_ON;
                 }

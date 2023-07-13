@@ -5,8 +5,6 @@ Gilberto Echeverria
 2023-07-12
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -22,6 +20,20 @@ public class GameManager : MonoBehaviour
     {
         GameObject player = GameObject.FindWithTag("Player");
 
+        if (player != null) {
+            InitializePlayer(player);
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Dim the global light
+        globalLight.intensity = globalLightIntensity;
+    }
+
+    void InitializePlayer(GameObject player)
+    {
         // Check if we are getting back from a house
         if (SceneManager.GetActiveScene().name == "MainMap") {
             // Get the index of the house to enter, or the default position
@@ -35,18 +47,5 @@ public class GameManager : MonoBehaviour
         playerStatus.health = PlayerPrefs.GetInt("Health", playerStatus.maxHealth);
         playerStatus.oilCans = PlayerPrefs.GetInt("OilCans", playerStatus.maxOilCans);
         playerStatus.sanity = PlayerPrefs.GetInt("Sanity", playerStatus.maxSanity);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Dim the global light
-        globalLight.intensity = globalLightIntensity;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
