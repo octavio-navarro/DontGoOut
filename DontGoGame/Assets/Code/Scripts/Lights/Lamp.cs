@@ -185,7 +185,7 @@ public class Lamp : MonoBehaviour
             if (oilDuration <= 1.0f) {
                 //state = LampState.RUNNING_OUT;
                 if (oilDuration <= 0.0f) {
-                    characterStatus.oilCans -= oilRequired;
+                    characterStatus.ConsumeOil(oilRequired);
                     oilDuration = maxOilDuration;
                     state = LampState.TURNING_ON;
                 }
