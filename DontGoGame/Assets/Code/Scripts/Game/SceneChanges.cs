@@ -26,7 +26,7 @@ public class SceneChanges : MonoBehaviour
             CharacterStatus playerStatus = other.GetComponent<CharacterStatus>();
             PlayerPrefs.SetInt("Health", playerStatus.health);
             PlayerPrefs.SetInt("OilCans", playerStatus.oilCans);
-            PlayerPrefs.SetInt("Sanity", playerStatus.sanity);
+            PlayerPrefs.SetFloat("Sanity", playerStatus.sanity);
 
             // Change to the new scene
             SceneManager.LoadScene(sceneName);

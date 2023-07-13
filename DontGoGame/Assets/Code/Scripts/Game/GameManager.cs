@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         CharacterStatus playerStatus = player.GetComponent<CharacterStatus>();
         playerStatus.health = PlayerPrefs.GetInt("Health", playerStatus.maxHealth);
         playerStatus.oilCans = PlayerPrefs.GetInt("OilCans", playerStatus.maxOilCans);
-        playerStatus.sanity = PlayerPrefs.GetInt("Sanity", playerStatus.maxSanity);
+        playerStatus.sanity = PlayerPrefs.GetFloat("Sanity", playerStatus.maxSanity);
     }
 
     // Start is called before the first frame update

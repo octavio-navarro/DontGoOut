@@ -15,8 +15,8 @@ public class CharacterStatus : MonoBehaviour
     [SerializeField] public int maxHealth = 100;
     [SerializeField] public int oilCans = 3;
     [SerializeField] public int maxOilCans = 6;
-    [SerializeField] public int sanity = 100;
-    [SerializeField] public int maxSanity = 100;
+    [SerializeField] public float sanity = 100;
+    [SerializeField] public float maxSanity = 100;
     [SerializeField] bool isSafe = false;
 
     // Start is called before the first frame update

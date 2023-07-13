@@ -227,11 +227,7 @@ MonoBehaviour:
   - {x: 2, y: 0, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-<<<<<<< HEAD:DontGoGame/Assets/Prefabs/Obstacles/House.prefab
-  m_InstanceId: -317748
-=======
   m_InstanceId: 442756
->>>>>>> 1409c8cb2b8f6ecc0f699de9429eca24e47cf635:DontGoGame/Assets/Prefabs/House.prefab
   m_LocalBounds:
     m_Center: {x: 0, y: 2.28125, z: 0}
     m_Extent: {x: 2, y: 2.28125, z: 0}
