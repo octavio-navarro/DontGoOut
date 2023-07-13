@@ -18,6 +18,8 @@ public class CharacterMotion : MonoBehaviour
     Rigidbody2D rb2d;
     Animator animator;
     Vector3 move;
+
+    public bool canMove = true;
     
     // Start is called before the first frame update
     void Start()
@@ -29,19 +31,27 @@ public class CharacterMotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move.x = Input.GetAxisRaw("Horizontal");
-        move.y = Input.GetAxisRaw("Vertical");
+        if(canMove)
+        {
+            move.x = Input.GetAxisRaw("Horizontal");
+            move.y = Input.GetAxisRaw("Vertical");
 
-        // Normalize the vector to avoid faster diagonal movement
-        move.Normalize();
+            // Normalize the vector to avoid faster diagonal movement
+            move.Normalize();
 
-        animator.SetFloat("move_x", move.x);
-        animator.SetFloat("move_y", move.y);
+            animator.SetFloat("move_x", move.x);
+            animator.SetFloat("move_y", move.y);
 
-        // Place the lamp in front of the player
-        lampTransform.position = transform.position + lampOffset
-                        + Vector3.Scale(move, lampMovementMultiplier);
+            // Place the lamp in front of the player
+            lampTransform.position = transform.position + 
+                                        lampOffset + Vector3.Scale(move, lampMovementMultiplier);
 
-        rb2d.velocity = move * speed;
+            
+            rb2d.velocity = move * speed;
+        }
+        else
+        {
+            rb2d.velocity = Vector2.zero;
+        }
     }
 }

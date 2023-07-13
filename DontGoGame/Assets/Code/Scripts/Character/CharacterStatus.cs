@@ -37,6 +37,14 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+        if (health < 0) {
+            health = 0;
+        }
+    }
+
     public void DrainSanity(float amount)
     {
         sanity -= amount;
@@ -45,17 +53,21 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
-    public void RecoverSanity(int amount)
+    public void RecoverHealth(int amount)
+    {
+        health += amount;
+        if (health > maxHealth) {
+            health = maxHealth;
+        }
+    }
+
+    public void RecoverSanity(float amount)
     {
         if (isSafe && oilCans >= 3) {
             oilCans -= 3;
             sanity += amount;
             if (sanity > maxSanity) {
                 sanity = maxSanity;
-            }
-            health += amount;
-            if (health > maxHealth) {
-                health = maxHealth;
             }
         }
     }

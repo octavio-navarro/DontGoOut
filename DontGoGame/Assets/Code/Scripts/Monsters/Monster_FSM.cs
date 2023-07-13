@@ -24,7 +24,9 @@ public class Monster_FSM : MonoBehaviour
 
     Animator animator;
 
-    bool playerLos = false, close = false;
+    GameManager gameManager;
+
+    public bool playerLos = false;
     public LampState lampState;
 
     IEnumerator waitSearchCoroutine = null, updateTargetCoroutine = null;
@@ -40,6 +42,8 @@ public class Monster_FSM : MonoBehaviour
         agent.updateUpAxis = false;
 
         updateTargetCoroutine = UpdateTarget();
+
+        gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -95,8 +99,30 @@ public class Monster_FSM : MonoBehaviour
                 currentTarget = hit.position;
             else
                 currentTarget = targetPosition.position + new Vector3(Random.Range(-randomRadius, randomRadius), Random.Range(-randomRadius, randomRadius), 0);
+
             agent.SetDestination(currentTarget);
         }
+    }
+
+    IEnumerator AttackPlayer()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        CharacterMotion characterMotion = player.GetComponent<CharacterMotion>();
+
+        characterMotion.canMove = false;
+
+        gameManager.characterStatus.TakeDamage(10);
+
+        Vector2 newPosition = player.transform.position + rayDirection * 2f;
+
+        while (Vector2.Distance(player.transform.position, newPosition) > 0.1f)
+        {
+            player.transform.position = Vector2.Lerp(player.transform.position, newPosition, 0.1f);
+
+            yield return null;
+        }
+        
+        characterMotion.canMove = true;
     }
 
     void UpdateSearch()
@@ -119,15 +145,16 @@ public class Monster_FSM : MonoBehaviour
             currentState = MonsterStates.Search;
             StartCoroutine(updateTargetCoroutine);
         }
-        else if(Vector3.Distance(transform.position, targetPosition.position) < 1.0f)
+        else if(Vector3.Distance(transform.position, targetPosition.position) < 2.0f)
             currentState = MonsterStates.Attack;
     }
 
     void UpdateAttack()
     {
-        Debug.Log("Attack");
         waitSearchCoroutine = null;
         currentState = MonsterStates.Idle;
+
+        StartCoroutine(AttackPlayer());
     }
 
     private void FixedUpdate() 

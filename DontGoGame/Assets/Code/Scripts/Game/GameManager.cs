@@ -15,7 +15,7 @@ using UnityEngine.AI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] Light2D globalLight;
-    [SerializeField] CharacterStatus characterStatus;
+    [SerializeField] public CharacterStatus characterStatus;
     [SerializeField] Monster_FSM[] monsters;
     [SerializeField] Lamp lamp;
     [SerializeField] float globalLightIntensity = 0.1f;
