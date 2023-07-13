@@ -323,7 +323,7 @@ MonoBehaviour:
   - {x: -0.08594977, y: 0.045145594, z: 0}
   m_ShapePathHash: 1326620225
   m_Mesh: {fileID: 0}
-  m_InstanceId: 44400
+  m_InstanceId: -396796
   m_LocalBounds:
     m_Center: {x: -0.0024336427, y: 0.39710823, z: 0}
     m_Extent: {x: 0.18948251, y: 0.35196263, z: 0}
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6696f0f53c8ff34f8ea8ff0112d802b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
+  state: 2
   lampKey: 32
   flickerTime: 0.3
   flickerMinIntensity: 0.5
@@ -526,7 +526,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 160822549
   m_Mesh: {fileID: 0}
-  m_InstanceId: 44426
+  m_InstanceId: -396846
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
@@ -641,7 +641,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 160822549
   m_Mesh: {fileID: 0}
-  m_InstanceId: 44404
+  m_InstanceId: -396822
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
@@ -756,7 +756,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 160822549
   m_Mesh: {fileID: 0}
-  m_InstanceId: 44434
+  m_InstanceId: -396838
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
@@ -871,7 +871,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 160822549
   m_Mesh: {fileID: 0}
-  m_InstanceId: 44424
+  m_InstanceId: -396830
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
