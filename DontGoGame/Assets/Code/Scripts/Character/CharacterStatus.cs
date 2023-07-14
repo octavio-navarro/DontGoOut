@@ -19,10 +19,12 @@ public class CharacterStatus : MonoBehaviour
     [SerializeField] public float maxSanity = 100;
     [SerializeField] bool isSafe = false;
 
+    GameManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        manager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -51,6 +53,7 @@ public class CharacterStatus : MonoBehaviour
         if (sanity < 0) {
             sanity = 0;
         }
+        manager.UpdateSanity();
     }
 
     public void RecoverHealth(int amount)
@@ -70,6 +73,18 @@ public class CharacterStatus : MonoBehaviour
                 sanity = maxSanity;
             }
         }
+        manager.UpdateSanity();
+        manager.UpdateHealth();
+        manager.UpdateBottles();
+    }
+
+    public void ConsumeOil(int amount)
+    {
+        oilCans -= amount;
+        if (oilCans < 0) {
+            oilCans = 0;
+        }
+        manager.UpdateBottles();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -78,6 +93,7 @@ public class CharacterStatus : MonoBehaviour
             if (oilCans < maxOilCans) {
                 oilCans++;
                 Destroy(other.gameObject);
+                manager.UpdateBottles();
             }
         }
         if (other.CompareTag("SafeZone")) {
