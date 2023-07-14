@@ -50,9 +50,12 @@ public class CharacterStatus : MonoBehaviour
 
     public void DrainSanity(float amount)
     {
-        sanity -= amount;
-        if (sanity < 0) {
-            sanity = 0;
+        if(!isSafe)
+        {
+            sanity -= amount;
+            if (sanity < 0) {
+                sanity = 0;
+            }
         }
         manager.UpdateSanity();
     }
