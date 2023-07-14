@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1055989596562017181}
   - component: {fileID: 3051768933907053278}
   - component: {fileID: -8643683680434845929}
-  m_Layer: 0
+  - component: {fileID: 7850091894024274849}
+  m_Layer: 8
   m_Name: Barrel_yellow
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1055989596562017181
 SpriteRenderer:
@@ -159,7 +160,23 @@ MonoBehaviour:
   - {x: 0.1856991, y: 0.044055223, z: 0}
   m_ShapePathHash: 969440349
   m_Mesh: {fileID: 0}
-  m_InstanceId: 45860
+  m_InstanceId: -2094
   m_LocalBounds:
     m_Center: {x: -0.00060009956, y: 0.42216268, z: 0}
     m_Extent: {x: 0.3887545, y: 0.3811386, z: 0}
+--- !u!114 &7850091894024274849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814780454829293455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

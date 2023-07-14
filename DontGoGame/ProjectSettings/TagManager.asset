@@ -6,6 +6,8 @@ TagManager:
   tags:
   - OilCan
   - SafeZone
+  - Monster
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -13,9 +15,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Monster
+  - Player
+  - Obstacles
   - 
   - 
   - 

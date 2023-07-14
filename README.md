@@ -6,6 +6,7 @@ Entry for the Game Devs CSF Jam #1
 # References
 ---
 
+- [NavMeshPlus](https://github.com/h8man/NavMeshPlus)
 - [Wave function collapse original github](https://github.com/mxgmn/WaveFunctionCollapse)
 - [Wave function collapse in unity](https://selfsame.itch.io/unitywfc)
 - [WFC-generate-Unity](https://github.com/AndreyMoskalev565/WFC-Unity)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2390819874964380864}
   - component: {fileID: 5315213539120443595}
   - component: {fileID: 2198047143008348712}
+  - component: {fileID: 4332348845619154030}
   m_Layer: 0
   m_Name: Well
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2390819874964380864
 SpriteRenderer:
@@ -161,7 +162,23 @@ MonoBehaviour:
   - {x: 0.1835178, y: 0.02107817, z: 0}
   m_ShapePathHash: -876754570
   m_Mesh: {fileID: 0}
-  m_InstanceId: -537602
+  m_InstanceId: -322466
   m_LocalBounds:
     m_Center: {x: -0.14695567, y: 0.6493712, z: 0}
     m_Extent: {x: 0.63514555, y: 0.62829304, z: 0}
+--- !u!114 &4332348845619154030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4123373765834790884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

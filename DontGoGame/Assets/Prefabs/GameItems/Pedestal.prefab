@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4682377254649968110}
   - component: {fileID: 7462372365579054138}
   - component: {fileID: 5963414558785845705}
+  - component: {fileID: 7831071128404639813}
   m_Layer: 0
   m_Name: Pedestal
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 9116446833873002141}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4682377254649968110
 SpriteRenderer:
@@ -162,10 +163,26 @@ MonoBehaviour:
   - {x: -0.21358979, y: 0.06066841, z: 0}
   m_ShapePathHash: 253252152
   m_Mesh: {fileID: 0}
-  m_InstanceId: 164706
+  m_InstanceId: -4064
   m_LocalBounds:
     m_Center: {x: 0.0063527822, y: 0.78466076, z: 0}
     m_Extent: {x: 0.5187185, y: 0.7354418, z: 0}
+--- !u!114 &7831071128404639813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2867077395657204635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1001 &8118007768016589224
 PrefabInstance:
   m_ObjectHideFlags: 0

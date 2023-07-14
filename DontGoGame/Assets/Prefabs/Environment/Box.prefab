@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1890977190549383720}
   - component: {fileID: 8602381710076803970}
   - component: {fileID: 3789613322253973041}
+  - component: {fileID: 7110307738622642562}
   m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1890977190549383720
 SpriteRenderer:
@@ -145,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShadowGroup: 0
   m_ComponentVersion: 1
-  m_HasRenderer: 0
+  m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
@@ -157,7 +158,23 @@ MonoBehaviour:
   - {x: 0.4375, y: 0, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -499390
+  m_InstanceId: -4456
   m_LocalBounds:
     m_Center: {x: 0, y: 0.46875, z: 0}
     m_Extent: {x: 0.4375, y: 0.46875, z: 0}
+--- !u!114 &7110307738622642562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4284216434847251021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

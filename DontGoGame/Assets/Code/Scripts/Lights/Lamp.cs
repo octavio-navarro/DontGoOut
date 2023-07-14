@@ -19,7 +19,7 @@ public enum LampState
 
 public class Lamp : MonoBehaviour
 {
-    [SerializeField] LampState state = LampState.ON;
+    [SerializeField] public LampState state = LampState.ON;
     [SerializeField] KeyCode lampKey = KeyCode.Space;
 
     [SerializeField] float flickerTime = 0.3f;
@@ -73,7 +73,7 @@ public class Lamp : MonoBehaviour
         }
     }
 
-    void ToggleLamp()
+    public void ToggleLamp()
     {
         switch(state) {
             case LampState.ON:
