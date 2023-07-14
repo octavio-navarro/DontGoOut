@@ -17,6 +17,7 @@ public class GUIFunctions : MonoBehaviour
         PlayerPrefs.DeleteKey("OilCans");
         PlayerPrefs.DeleteKey("Sanity");
         PlayerPrefs.SetInt("HouseIndex", 0);
+        
         // Load the first scene
         SceneManager.LoadScene("MainMap");
     }
