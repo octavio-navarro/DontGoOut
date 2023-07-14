@@ -6,6 +6,7 @@ Entry for the Game Devs CSF Jam #1
 # References
 ---
 
+- [Smart merge config](https://github.com/anacat/unity-mergetool)
 - [Smart merge with p4merge](https://gist.github.com/maxahn/3b4c78d276d5f409b69da6e8610b2ef2)
 - [NavMeshPlus](https://github.com/h8man/NavMeshPlus)
 - [Wave function collapse original github](https://github.com/mxgmn/WaveFunctionCollapse)
