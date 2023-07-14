@@ -24,10 +24,13 @@ public class CharacterStatus : MonoBehaviour
 
     GameManager manager;
 
+    BottleManager bottleManager;
+
     // Start is called before the first frame update
     void Start()
     {
         manager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        bottleManager = GameObject.FindWithTag("GameController").GetComponent<BottleManager>();
     }
 
     // Update is called once per frame
@@ -103,6 +106,7 @@ public class CharacterStatus : MonoBehaviour
                 Destroy(other.gameObject);
                 pickBottleSound.Play();
                 manager.UpdateBottles();
+                bottleManager.RegisterCollected(other.gameObject);
             }
         }
         if (other.CompareTag("SafeZone")) {

@@ -14,12 +14,21 @@ public class SceneChanges : MonoBehaviour
     [SerializeField] int houseIndex = 0;
     [SerializeField] bool fromMainMap = true;
 
+    BottleManager bottleManager;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        bottleManager = GameObject.FindWithTag("GameController").GetComponent<BottleManager>();
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")) {
             if (fromMainMap) {
                 // Store the reference to the house entered
                 PlayerPrefs.SetInt("HouseIndex", houseIndex);
+                bottleManager.SaveCollected();
             }
 
             // Store the player status variables
