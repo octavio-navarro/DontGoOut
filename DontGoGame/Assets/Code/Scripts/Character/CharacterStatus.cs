@@ -45,6 +45,7 @@ public class CharacterStatus : MonoBehaviour
         if (health < 0) {
             health = 0;
         }
+        manager.UpdateHealth();
     }
 
     public void DrainSanity(float amount)
@@ -62,6 +63,7 @@ public class CharacterStatus : MonoBehaviour
         if (health > maxHealth) {
             health = maxHealth;
         }
+        manager.UpdateHealth();
     }
 
     public void RecoverSanity(float amount)
@@ -74,7 +76,6 @@ public class CharacterStatus : MonoBehaviour
             }
         }
         manager.UpdateSanity();
-        manager.UpdateHealth();
         manager.UpdateBottles();
     }
 

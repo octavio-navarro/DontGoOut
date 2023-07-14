@@ -104,7 +104,8 @@ public class GameManager : MonoBehaviour
 
     void InitializeUI()
     {
-        if (useUI) {
+        if (useUI) 
+        {
             healthSlider.maxValue = playerStatus.maxHealth;
             sanitySlider.maxValue = playerStatus.maxSanity;
             UpdateBottles();
