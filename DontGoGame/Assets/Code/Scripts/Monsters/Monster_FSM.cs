@@ -111,7 +111,7 @@ public class Monster_FSM : MonoBehaviour
 
         characterMotion.canMove = false;
 
-        gameManager.characterStatus.TakeDamage(10);
+        gameManager.playerStatus.TakeDamage(10);
 
         Vector2 newPosition = player.transform.position + rayDirection * 2f;
 
