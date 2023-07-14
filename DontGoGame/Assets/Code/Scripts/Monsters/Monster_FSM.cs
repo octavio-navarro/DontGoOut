@@ -29,6 +29,7 @@ public class Monster_FSM : MonoBehaviour
 
     GameManager gameManager;
 
+    SpriteRenderer spriteRenderer;
 
     public bool playerLos = false;
     public LampState lampState;
@@ -45,6 +46,8 @@ public class Monster_FSM : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
         updateTargetCoroutine = UpdateTarget();
 
         gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
@@ -55,6 +58,8 @@ public class Monster_FSM : MonoBehaviour
     {
         Vector3 targetDirection = targetPosition.position - originPosition.position;
         rayDirection = targetDirection.normalized;
+
+        LookAtPlayer();
 
         switch(currentState)
         {
@@ -187,5 +192,17 @@ public class Monster_FSM : MonoBehaviour
         }
 
         Debug.DrawRay(originPosition.position, rayDirection * rayLength, playerLos ? Color.green : Color.red);
+    }
+
+    void LookAtPlayer()
+    {
+        if (rayDirection.x >= 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 }
