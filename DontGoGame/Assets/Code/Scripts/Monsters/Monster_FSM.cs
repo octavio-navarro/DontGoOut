@@ -18,6 +18,9 @@ public class Monster_FSM : MonoBehaviour
     [SerializeField] Vector3 currentTarget;
     [SerializeField] float randomRadius = 3f;
 
+    [SerializeField] AudioSource chaseSound;
+    [SerializeField] AudioSource attackSound;
+
     Vector3 rayDirection = Vector3.right;
 
     NavMeshAgent agent;
@@ -25,6 +28,7 @@ public class Monster_FSM : MonoBehaviour
     Animator animator;
 
     GameManager gameManager;
+
 
     public bool playerLos = false;
     public LampState lampState;
@@ -132,6 +136,7 @@ public class Monster_FSM : MonoBehaviour
         if(playerLos && distance <= closeDistance)
         {
             currentState = MonsterStates.Chase;
+            chaseSound.Play();
             StopCoroutine(updateTargetCoroutine);
         }
     }
@@ -146,7 +151,10 @@ public class Monster_FSM : MonoBehaviour
             StartCoroutine(updateTargetCoroutine);
         }
         else if(Vector3.Distance(transform.position, targetPosition.position) < 2.0f)
+        {
+            attackSound.Play();
             currentState = MonsterStates.Attack;
+        }
     }
 
     void UpdateAttack()
