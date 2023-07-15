@@ -35,7 +35,8 @@ public class SceneChanges : MonoBehaviour
                 gameSettings.houseIndex = houseIndex;
                 bottleManager.SaveCollected();
             }
-            else if(SceneManager.GetActiveScene().name == "FinalHouse")
+            
+            if(SceneManager.GetActiveScene().name == "FinalHouse")
             {
                 StartCoroutine(DeadPanelFadeIn());
             }
