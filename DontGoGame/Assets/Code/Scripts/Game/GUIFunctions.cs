@@ -27,4 +27,9 @@ public class GUIFunctions : MonoBehaviour
         // Load the first scene
         SceneManager.LoadScene("MainMap");
     }
+
+    public void GoToScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }
