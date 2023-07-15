@@ -21,6 +21,9 @@ public class GUIFunctions : MonoBehaviour
         gameSettings.currentDialogue = 0;
         gameSettings.houseIndex = 0;
         
+        // Reset the collected bottles
+        PlayerPrefs.SetString("collected", "{collected:[]}");
+        
         // Load the first scene
         SceneManager.LoadScene("MainMap");
     }
