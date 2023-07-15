@@ -85,8 +85,11 @@ public class GameManager : MonoBehaviour
 
         currentDialogue = gameSettings.currentDialogue;
 
-        if((SceneManager.GetActiveScene().name == "MainMap" && currentDialogue == 0) || SceneManager.GetActiveScene().name == "SafeHouse")
-                StartCoroutine(StartDialogue());
+        if(SceneManager.GetActiveScene().name=="FinalHouse")
+            currentDialogue = 0;
+
+        if((SceneManager.GetActiveScene().name == "MainMap" && currentDialogue == 0) || SceneManager.GetActiveScene().name == "SafeHouse" || SceneManager.GetActiveScene().name == "FinalHouse")
+            StartCoroutine(StartDialogue());
     }
 
     void Update()

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 100
   _oilCans: 6
-  _sanity: 100
-  _currentDialogue: 0
-  _houseIndex: 1
+  _sanity: 92.33387
+  _currentDialogue: 1
+  _houseIndex: 4

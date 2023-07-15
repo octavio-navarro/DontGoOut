@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public enum MonsterStates
 {
-    Idle, Search, Chase, Attack
+    Idle, Search, Chase, Attack, NotActive
 }
 
 public class Monster_FSM : MonoBehaviour
@@ -32,6 +32,22 @@ public class Monster_FSM : MonoBehaviour
     IEnumerator waitSearchCoroutine = null, updateTargetCoroutine = null;
 
     // Start is called before the first frame update
+    private void OnEnable() 
+    {
+        Debug.Log("Monster enabled");
+        animator = GetComponent<Animator>();
+        animator.SetInteger("State", (int)currentState);
+
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
+        waitSearchCoroutine = null;
+        updateTargetCoroutine = UpdateTarget();
+
+        gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+    }
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -41,6 +57,7 @@ public class Monster_FSM : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
+        waitSearchCoroutine = null;
         updateTargetCoroutine = UpdateTarget();
 
         gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
@@ -72,6 +89,10 @@ public class Monster_FSM : MonoBehaviour
                 
             case MonsterStates.Attack:
                 UpdateAttack();
+                break;
+
+            case MonsterStates.NotActive:
+                animator.SetInteger("State", (int)currentState);
                 break;
         }
 
