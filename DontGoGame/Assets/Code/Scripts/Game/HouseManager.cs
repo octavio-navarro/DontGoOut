@@ -10,7 +10,6 @@ using UnityEngine;
 public class HouseManager : MonoBehaviour
 {
     [SerializeField] GameObject houseFire;
-    [SerializeField] int recoveryAmount = 50;
     [SerializeField] KeyCode interactKey = KeyCode.F;
 
     CharacterStatus playerStatus;
@@ -29,7 +28,7 @@ public class HouseManager : MonoBehaviour
     {
         if (nearFireplace && !fireIsLit && Input.GetKeyDown(interactKey)) {
             Instantiate(houseFire, transform.position, Quaternion.identity);
-            playerStatus.RecoverSanity(recoveryAmount);
+            playerStatus.RecoverSanity(playerStatus.maxSanity * 0.5f);
             fireIsLit = true;
         }
     }

@@ -122,13 +122,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 2
-  lampKey: 102
+  lampKey: 0
   flickerTime: 0.2
   flickerMinIntensity: 0.7
   flickerMaxIntensity: 3
   offsetRadius: 0.5
-  maxOilDuration: 20
-  oilRequired: 1
+  maxOilDuration: 120
+  oilRequired: 0
 --- !u!82 &-2896678558483910818
 AudioSource:
   m_ObjectHideFlags: 0
