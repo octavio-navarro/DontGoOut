@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     CharacterMotion playerMotion;
     CharacterDialogue dialogueController;
 
-    CharacterStatus playerStatus;
+    // CharacterStatus playerStatus;
 
     bool inMainMap = false;
 
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
             inMainMap = true;
         }
 
-        GameObject player = GameObject.FindWithTag("Player");
+        // GameObject player = GameObject.FindWithTag("Player");
 
         if (player != null) {
             playerStatus = player.GetComponent<CharacterStatus>();
