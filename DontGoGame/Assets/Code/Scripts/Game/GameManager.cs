@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int damageTaken = 5;
     [SerializeField] bool useUI = false;
     [SerializeField] GameSettingsSO gameSettings;
+    [SerializeField] GameObject DeadPanel;
     int currentDialogue = 0;
     LampState currentState;
     GameObject player;
@@ -104,6 +105,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if(playerStatus.health <= 0)
+            onDeath();
+
         if(!showingText)
         {
             SanityEffects();
@@ -282,5 +286,31 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator DeadPanelFadeIn()
+    {
+        float alpha = 0f;
+        Color originalPanelColor = DeadPanel.GetComponent<Image>().color;
+        Color originalTextColor = DeadPanel.GetComponentInChildren<TMPro.TMP_Text>().color;
+
+        while(alpha < 1)
+        {
+            alpha += 0.01f;
+            DeadPanel.GetComponent<Image>().color = new Color(originalPanelColor.r, originalPanelColor.g, originalPanelColor.b, alpha);
+            DeadPanel.GetComponentInChildren<TMPro.TMP_Text>().color = new Color(originalTextColor.r, originalTextColor.g, originalTextColor.b, alpha);
+
+            
+            yield return null;
+        }
+        
+        yield return new WaitForSeconds(2f);
+        
+        SceneManager.LoadScene("TitleProposal");
+    }
+
+    void onDeath()
+    {
+        StartCoroutine(DeadPanelFadeIn());
     }
 }

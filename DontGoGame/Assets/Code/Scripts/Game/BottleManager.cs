@@ -32,7 +32,7 @@ public class BottleManager : MonoBehaviour
     void RemoveUsedBottles()
     {
         string collectedString = PlayerPrefs.GetString("collected", "{collected:[]}");
-        //Debug.Log("COLLECTED JSON READ: " + collectedString);
+        Debug.Log("COLLECTED JSON READ: " + collectedString);
         collected = JsonUtility.FromJson<CollectedList>(collectedString);
         foreach(GameObject bottle in bottles) {
             int pos = collected.collected.IndexOf(bottle.GetComponent<BottleID>().id);

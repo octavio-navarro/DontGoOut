@@ -39,7 +39,6 @@ public class Monster_FSM : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable() 
     {
-        Debug.Log("Monster enabled");
         animator = GetComponent<Animator>();
         animator.SetInteger("State", (int)currentState);
 
@@ -48,7 +47,7 @@ public class Monster_FSM : MonoBehaviour
         agent.updateUpAxis = false;
 
         waitSearchCoroutine = null;
-	   spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         updateTargetCoroutine = UpdateTarget();
 
         gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
@@ -144,7 +143,7 @@ public class Monster_FSM : MonoBehaviour
 
         gameManager.playerStatus.TakeDamage(10);
 
-        Vector2 newPosition = player.transform.position + rayDirection * 2f;
+        Vector2 newPosition = player.transform.position + rayDirection;
 
         while (Vector2.Distance(player.transform.position, newPosition) > 0.1f)
         {
@@ -221,10 +220,12 @@ public class Monster_FSM : MonoBehaviour
         if (rayDirection.x >= 0)
         {
             spriteRenderer.flipX = true;
+            transform.Find("Body").transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else
         {
             spriteRenderer.flipX = false;
+            transform.Find("Body").transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 }
