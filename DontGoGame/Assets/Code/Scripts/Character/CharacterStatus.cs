@@ -17,7 +17,7 @@ public class CharacterStatus : MonoBehaviour
     [SerializeField] public int maxOilCans = 6;
     [SerializeField] public float sanity = 100;
     [SerializeField] public float maxSanity = 100;
-    [SerializeField] bool isSafe = false;
+    [SerializeField] public bool isSafe = false;
 
     [SerializeField] AudioSource pickBottleSound;
     [SerializeField] AudioSource useBottleSound;

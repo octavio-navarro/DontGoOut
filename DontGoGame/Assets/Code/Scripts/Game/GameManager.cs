@@ -5,6 +5,7 @@ Gilberto Echeverria
 2023-07-12
 */
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
@@ -15,38 +16,36 @@ using UnityEngine.AI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] Light2D globalLight;
-    [SerializeField] public CharacterStatus characterStatus;
     [SerializeField] Monster_FSM[] monsters;
     [SerializeField] Lamp lamp;
+    [SerializeField] Transform[] houseRestartPositions;
+    [SerializeField] Sprite fullBottle;
+    [SerializeField] Sprite emptyBottle;
+    [SerializeField] Image[] bottles;
+    [SerializeField] Slider healthSlider;
+    [SerializeField] Slider sanitySlider;
+    [SerializeField] VolumeProfile globalVolume;
+    [SerializeField] GameObject dialogueBox;
     [SerializeField] float globalLightIntensity = 0.1f;
     [SerializeField] float sanityDrainRate = 0.1f;
     [SerializeField] float damageEachNSecs = 10;
     [SerializeField] int damageTaken = 5;
-
-    LampState currentState;
-
     [SerializeField] bool useUI = false;
+    [SerializeField] GameSettingsSO gameSettings;
+    int currentDialogue = 0;
+    LampState currentState;
+    GameObject player;
+    public CharacterStatus playerStatus;
+    CharacterMotion playerMotion;
+    CharacterDialogue dialogueController;
 
-    [SerializeField] Transform[] houseRestartPositions;
-
-    [SerializeField] Sprite fullBottle;
-    [SerializeField] Sprite emptyBottle;
-
-    [SerializeField] Image[] bottles;
-
-    [SerializeField] Slider healthSlider;
-    [SerializeField] Slider sanitySlider;
-
-    [SerializeField] VolumeProfile globalVolume;
-
-    CharacterStatus playerStatus;
+    // CharacterStatus playerStatus;
 
     bool inMainMap = false;
 
     float nextDamage = 0;
-
     float lensDistortionAngle = 0.0f, lensDistortionIntensity = 0.0f, lensDistortionSpeed = 1f;
-
+    private bool showingText = false;
     float _monsterSpeed;
     float monsterSpeed {
         get {
@@ -67,17 +66,22 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        player = GameObject.FindWithTag("Player");
         if (SceneManager.GetActiveScene().name == "MainMap") {
             inMainMap = true;
         }
 
-        GameObject player = GameObject.FindWithTag("Player");
+        // GameObject player = GameObject.FindWithTag("Player");
 
         if (player != null) {
             playerStatus = player.GetComponent<CharacterStatus>();
+            playerMotion = player.GetComponent<CharacterMotion>();
             InitializePlayer(player);
             InitializeUI();
         }
+
+        if(dialogueBox != null)
+            dialogueController = dialogueBox.GetComponent<CharacterDialogue>();
     }
 
     // Start is called before the first frame update
@@ -85,47 +89,97 @@ public class GameManager : MonoBehaviour
     {
         // Dim the global light
         globalLight.intensity = globalLightIntensity;
-
         currentState = lamp.state;
-
         nextDamage = damageEachNSecs;
-
         monsterSpeed = 1f;
+
+        currentDialogue = gameSettings.currentDialogue;
+
+        if(SceneManager.GetActiveScene().name=="FinalHouse")
+            currentDialogue = 0;
+
+        if((SceneManager.GetActiveScene().name == "MainMap" && currentDialogue == 0) || SceneManager.GetActiveScene().name == "SafeHouse" || SceneManager.GetActiveScene().name == "FinalHouse")
+            StartCoroutine(StartDialogue());
+    }
+
+    void Update()
+    {
+        if(!showingText)
+        {
+            SanityEffects();
+            LightEffects();
+        }
+
+        if(showingText != dialogueController.showingText)
+        {
+            showingText = dialogueController.showingText;
+
+            if(dialogueController.showingText)
+            {
+                playerMotion.canMove = false;
+            }
+            else
+            {
+                if(dialogueBox.activeSelf)
+                    dialogueBox.SetActive(false);
+
+                playerMotion.canMove = true;
+            }
+            ToggleMonsters();
+        }
+    }  
+
+    void ToggleMonsters()
+    {
+        foreach(Monster_FSM monster in monsters)
+            monster.gameObject.SetActive(!monster.gameObject.activeSelf);
+    }
+
+    IEnumerator StartDialogue()
+    {
+        yield return new WaitForSeconds(1f);
+
+        if(!dialogueBox.activeSelf)
+            dialogueBox.SetActive(true);
+
+        dialogueController.LoadDialogue(currentDialogue);
+        // currentDialogue++;
+        // gameSettings.currentDialogue = currentDialogue;
     }
 
     void SanityEffects()
     {
-        characterStatus.DrainSanity(sanityDrainRate * Time.deltaTime);
+        playerStatus.DrainSanity(sanityDrainRate * Time.deltaTime);
 
-        if (characterStatus.sanity <= 75)
+        if (playerStatus.sanity <= 75)
         {
             lensDistortionIntensity = 0.1f;
             lensDistortionSpeed = 1.2f;
             monsterSpeed = 1.2f;
         }
 
-        if (characterStatus.sanity <= 50)
+        if (playerStatus.sanity <= 50)
         {
             lensDistortionIntensity = 0.3f;
             lensDistortionSpeed = 1.5f;
             monsterSpeed = 1.8f;
         }
 
-        if (characterStatus.sanity <= 25)
+        if (playerStatus.sanity <= 25)
         {
             lensDistortionIntensity = 0.5f;
             lensDistortionSpeed = 2f;
             monsterSpeed = 2.5f;
         }
 
-        if (characterStatus.sanity <= 0)
+        if (playerStatus.sanity <= 0)
         {
             nextDamage -= Time.deltaTime;
 
             if (nextDamage <= 0)
             {
                 nextDamage = damageEachNSecs;
-                characterStatus.TakeDamage(damageTaken);
+                playerStatus.TakeDamage(damageTaken);
             }
         }
 
@@ -138,7 +192,7 @@ public class GameManager : MonoBehaviour
     {
         if (globalVolume.TryGet<ChromaticAberration>(out var chromaticAberration))
         {
-            chromaticAberration.intensity.value = 1 - (characterStatus.sanity / characterStatus.maxSanity);
+            chromaticAberration.intensity.value = 1 - (playerStatus.sanity / playerStatus.maxSanity);
         }
 
         lensDistortionAngle += Time.deltaTime * lensDistortionSpeed;
@@ -154,6 +208,9 @@ public class GameManager : MonoBehaviour
     {
         if (lamp.state == LampState.OFF || lamp.state == LampState.ON)
         {
+            if(lamp.state == LampState.ON)
+                lamp.ConsumeOil();
+
             if(lamp.state != currentState)
             {
                 currentState = lamp.state;
@@ -172,26 +229,20 @@ public class GameManager : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update()
-    {
-        SanityEffects();
-        LightEffects();
-    }
-
     void InitializePlayer(GameObject player)
     {
         // Check if we are getting back from a house
         if (inMainMap) {
             // Get the index of the house to enter, or the default position
-            int houseIndex = PlayerPrefs.GetInt("HouseIndex", 0);
+            int houseIndex = gameSettings.houseIndex;
             // Set the position of the player
             player.transform.position = houseRestartPositions[houseIndex].position;
         }
-
-        // Restore the saved status of the player
-        playerStatus.health = PlayerPrefs.GetInt("Health", playerStatus.maxHealth);
-        playerStatus.oilCans = PlayerPrefs.GetInt("OilCans", playerStatus.maxOilCans);
-        playerStatus.sanity = PlayerPrefs.GetFloat("Sanity", playerStatus.maxSanity);
+        
+        // // Restore the saved status of the player
+        playerStatus.health = gameSettings.health;
+        playerStatus.oilCans = gameSettings.oilCans;
+        playerStatus.sanity = gameSettings.sanity;
     }
 
     void InitializeUI()

@@ -10,13 +10,16 @@ using UnityEngine.SceneManagement;
 
 public class GUIFunctions : MonoBehaviour
 {
+    [SerializeField] GameSettingsSO gameSettings;
+
     public void StartGame()
     {
         // Reset the player status
-        PlayerPrefs.DeleteKey("Health");
-        PlayerPrefs.DeleteKey("OilCans");
-        PlayerPrefs.DeleteKey("Sanity");
-        PlayerPrefs.SetInt("HouseIndex", 0);
+        gameSettings.health = 100;
+        gameSettings.oilCans = 6;
+        gameSettings.sanity = 100;
+        gameSettings.currentDialogue = 0;
+        gameSettings.houseIndex = 0;
         
         // Reset the collected bottles
         PlayerPrefs.SetString("collected", "{collected:[]}");

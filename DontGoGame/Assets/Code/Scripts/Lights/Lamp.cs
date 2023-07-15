@@ -95,9 +95,9 @@ public class Lamp : MonoBehaviour
                 TurnOff();
                 break;
             case LampState.ON:
-                if (characterStatus != null) {
-                    ConsumeOil();
-                }
+                // if (characterStatus != null) {
+                //     ConsumeOil();
+                // }
                 PositionFlicker();
                 ColorFlicker();
                 IntensityFlicker();
@@ -173,7 +173,7 @@ public class Lamp : MonoBehaviour
         displacementTime += Time.deltaTime;
     }
 
-    void ConsumeOil()
+    public void ConsumeOil()
     {
         if (characterStatus.oilCans > 0) {
             oilDuration -= Time.deltaTime;
