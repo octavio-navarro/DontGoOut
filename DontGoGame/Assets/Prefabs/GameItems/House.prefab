@@ -68,7 +68,7 @@ Transform:
   - {fileID: 3559593720190879660}
   - {fileID: 1680177516063750973}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6361121566174755890
 SpriteRenderer:
@@ -227,7 +227,7 @@ MonoBehaviour:
   - {x: 2, y: 0, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 39976
+  m_InstanceId: -7300142
   m_LocalBounds:
     m_Center: {x: 0, y: 2.28125, z: 0}
     m_Extent: {x: 2, y: 2.28125, z: 0}
@@ -365,6 +365,14 @@ PrefabInstance:
       propertyPath: sceneName
       value: SafeHouse
       objectReference: {fileID: 0}
+    - target: {fileID: 3480411066640923442, guid: 0160aa6ed44badb83a5591b65c111a29, type: 3}
+      propertyPath: houseIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3480411066640923442, guid: 0160aa6ed44badb83a5591b65c111a29, type: 3}
+      propertyPath: gameSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 025fa3829857845439d5fc8bcabdb7ed, type: 2}
     - target: {fileID: 5071943276062988948, guid: 0160aa6ed44badb83a5591b65c111a29, type: 3}
       propertyPath: m_RootOrder
       value: 7

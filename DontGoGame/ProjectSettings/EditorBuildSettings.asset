@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 32c0a55037a50550ba7606a38bb47d7f
+  - enabled: 1
+    path: Assets/Scenes/FinalHouse.unity
+    guid: 97ad84606fffbd5499b3238dcd875bcc
+  - enabled: 1
+    path: Assets/Scenes/CreditScene.unity
+    guid: 35e00bf3c32c7a44abb7332182cb685f
   m_configObjects: {}
