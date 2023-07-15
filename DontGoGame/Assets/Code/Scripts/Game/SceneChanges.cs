@@ -68,7 +68,7 @@ public class SceneChanges : MonoBehaviour
 
         while(alpha < 1)
         {
-            alpha += 0.01f;
+            alpha += Time.deltaTime;
             YouLivedPanel.GetComponent<Image>().color = new Color(originalPanelColor.r, originalPanelColor.g, originalPanelColor.b, alpha);
             YouLivedText.GetComponentInChildren<TMPro.TMP_Text>().color = new Color(originalTextColor.r, originalTextColor.g, originalTextColor.b, alpha);
 
