@@ -18,6 +18,9 @@ public class GUIFunctions : MonoBehaviour
         PlayerPrefs.DeleteKey("Sanity");
         PlayerPrefs.SetInt("HouseIndex", 0);
         
+        // Reset the collected bottles
+        PlayerPrefs.SetString("collected", "{collected:[]}");
+        
         // Load the first scene
         SceneManager.LoadScene("MainMap");
     }

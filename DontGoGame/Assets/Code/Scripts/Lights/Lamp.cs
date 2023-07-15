@@ -80,12 +80,7 @@ public class Lamp : MonoBehaviour
                 state = LampState.TURNING_OFF;
                 break;
             case LampState.OFF:
-                // Initialize the variables for the turn on lerp
-                intensityTime = 0.0f;
-                intensityDuration = 0.1f;
-                startIntensity = lampLight.intensity;
-                endIntensity = flickerMaxIntensity * 2;
-                state = LampState.TURNING_ON;
+                PrepareFlash();
                 break;
         }
     }
@@ -187,11 +182,21 @@ public class Lamp : MonoBehaviour
                 if (oilDuration <= 0.0f) {
                     characterStatus.ConsumeOil(oilRequired);
                     oilDuration = maxOilDuration;
-                    state = LampState.TURNING_ON;
+                    PrepareFlash();
                 }
             }
         } else {
             state = LampState.TURNING_OFF;
         }
+    }
+
+    void PrepareFlash()
+    {
+        // Initialize the variables for the turn on lerp
+        intensityTime = 0.0f;
+        intensityDuration = 0.1f;
+        startIntensity = lampLight.intensity;
+        endIntensity = flickerMaxIntensity * 2;
+        state = LampState.TURNING_ON;
     }
 }

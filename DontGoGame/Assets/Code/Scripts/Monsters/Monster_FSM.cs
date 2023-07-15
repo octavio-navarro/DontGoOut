@@ -18,6 +18,9 @@ public class Monster_FSM : MonoBehaviour
     [SerializeField] Vector3 currentTarget;
     [SerializeField] float randomRadius = 3f;
 
+    [SerializeField] AudioSource chaseSound;
+    [SerializeField] AudioSource attackSound;
+
     Vector3 rayDirection = Vector3.right;
 
     NavMeshAgent agent;
@@ -25,6 +28,8 @@ public class Monster_FSM : MonoBehaviour
     Animator animator;
 
     GameManager gameManager;
+
+    SpriteRenderer spriteRenderer;
 
     public bool playerLos = false;
     public LampState lampState;
@@ -41,6 +46,8 @@ public class Monster_FSM : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
         updateTargetCoroutine = UpdateTarget();
 
         gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
@@ -51,6 +58,8 @@ public class Monster_FSM : MonoBehaviour
     {
         Vector3 targetDirection = targetPosition.position - originPosition.position;
         rayDirection = targetDirection.normalized;
+
+        LookAtPlayer();
 
         switch(currentState)
         {
@@ -132,6 +141,7 @@ public class Monster_FSM : MonoBehaviour
         if(playerLos && distance <= closeDistance)
         {
             currentState = MonsterStates.Chase;
+            chaseSound.Play();
             StopCoroutine(updateTargetCoroutine);
         }
     }
@@ -146,7 +156,10 @@ public class Monster_FSM : MonoBehaviour
             StartCoroutine(updateTargetCoroutine);
         }
         else if(Vector3.Distance(transform.position, targetPosition.position) < 2.0f)
+        {
+            attackSound.Play();
             currentState = MonsterStates.Attack;
+        }
     }
 
     void UpdateAttack()
@@ -179,5 +192,17 @@ public class Monster_FSM : MonoBehaviour
         }
 
         Debug.DrawRay(originPosition.position, rayDirection * rayLength, playerLos ? Color.green : Color.red);
+    }
+
+    void LookAtPlayer()
+    {
+        if (rayDirection.x >= 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 }

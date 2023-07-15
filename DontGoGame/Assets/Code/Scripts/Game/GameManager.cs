@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] VolumeProfile globalVolume;
 
     CharacterStatus playerStatus;
+
+    bool inMainMap = false;
+
     float nextDamage = 0;
 
     float lensDistortionAngle = 0.0f, lensDistortionIntensity = 0.0f, lensDistortionSpeed = 1f;
@@ -64,9 +67,11 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        GameObject player = GameObject.FindWithTag("Player");
+        if (SceneManager.GetActiveScene().name == "MainMap") {
+            inMainMap = true;
+        }
 
-        PlayerPrefs.DeleteAll();
+        GameObject player = GameObject.FindWithTag("Player");
 
         if (player != null) {
             playerStatus = player.GetComponent<CharacterStatus>();
@@ -124,7 +129,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        UpdatePostProcessingEffects();
+        if (inMainMap) {
+            UpdatePostProcessingEffects();
+        }
     }
 
     private void UpdatePostProcessingEffects()
@@ -174,7 +181,7 @@ public class GameManager : MonoBehaviour
     void InitializePlayer(GameObject player)
     {
         // Check if we are getting back from a house
-        if (SceneManager.GetActiveScene().name == "MainMap") {
+        if (inMainMap) {
             // Get the index of the house to enter, or the default position
             int houseIndex = PlayerPrefs.GetInt("HouseIndex", 0);
             // Set the position of the player

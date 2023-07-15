@@ -19,12 +19,18 @@ public class CharacterStatus : MonoBehaviour
     [SerializeField] public float maxSanity = 100;
     [SerializeField] bool isSafe = false;
 
+    [SerializeField] AudioSource pickBottleSound;
+    [SerializeField] AudioSource useBottleSound;
+
     GameManager manager;
+
+    BottleManager bottleManager;
 
     // Start is called before the first frame update
     void Start()
     {
         manager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        bottleManager = GameObject.FindWithTag("GameController").GetComponent<BottleManager>();
     }
 
     // Update is called once per frame
@@ -36,6 +42,9 @@ public class CharacterStatus : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C)) {
             RecoverSanity(50);
+        }
+        if (Input.GetKeyDown(KeyCode.R)) {
+            DebugResetState();
         }
     }
 
@@ -88,6 +97,7 @@ public class CharacterStatus : MonoBehaviour
         if (oilCans < 0) {
             oilCans = 0;
         }
+        useBottleSound.Play();
         manager.UpdateBottles();
     }
 
@@ -97,7 +107,9 @@ public class CharacterStatus : MonoBehaviour
             if (oilCans < maxOilCans) {
                 oilCans++;
                 Destroy(other.gameObject);
+                pickBottleSound.Play();
                 manager.UpdateBottles();
+                bottleManager.RegisterCollected(other.gameObject);
             }
         }
         if (other.CompareTag("SafeZone")) {
@@ -110,5 +122,15 @@ public class CharacterStatus : MonoBehaviour
         if (other.CompareTag("SafeZone")) {
             isSafe = false;
         }
+    }
+
+    void DebugResetState()
+    {
+        health = maxHealth;
+        oilCans = maxOilCans;
+        sanity = maxSanity;
+        manager.UpdateHealth();
+        manager.UpdateBottles();
+        manager.UpdateSanity();
     }
 }
