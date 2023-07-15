@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8336076968898698937
 RectTransform:
   m_ObjectHideFlags: 0
@@ -107,6 +107,8 @@ MonoBehaviour:
     to get out of this town, and I'm going to survive. * The bonfire fills you with
     determination. *
   - '* You are filled with DETERMINATION. *'
+  gameSettings: {fileID: 11400000, guid: 025fa3829857845439d5fc8bcabdb7ed, type: 2}
+  showingText: 0
 --- !u!1 &6568309034332394548
 GameObject:
   m_ObjectHideFlags: 0

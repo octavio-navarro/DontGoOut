@@ -12,6 +12,7 @@ public class HouseManager : MonoBehaviour
     [SerializeField] GameObject houseFire;
     [SerializeField] int recoveryAmount = 50;
     [SerializeField] KeyCode interactKey = KeyCode.F;
+    [SerializeField] GameObject pressF;
 
     CharacterStatus playerStatus;
 
@@ -31,6 +32,7 @@ public class HouseManager : MonoBehaviour
             Instantiate(houseFire, transform.position, Quaternion.identity);
             playerStatus.RecoverSanity(recoveryAmount);
             fireIsLit = true;
+            pressF.SetActive(false);
         }
     }
 
@@ -38,6 +40,7 @@ public class HouseManager : MonoBehaviour
     {
         if (other.CompareTag("Player")) {
             nearFireplace = true;
+            pressF.SetActive(true);
         }
     }
 

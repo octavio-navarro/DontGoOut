@@ -7,6 +7,7 @@ public class CharacterDialogue : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] string[] dialogueLines;
+    [SerializeField] GameSettingsSO gameSettings;
 
     private int dialogueIndex;
     private int currentPages;
@@ -33,7 +34,10 @@ public class CharacterDialogue : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
-        dialogueIndex = (dialogueIndex + 1) % dialogueLines.Length;  
+        Debug.Log(dialogueIndex);
+        dialogueIndex =  (dialogueIndex + 1) > (dialogueLines.Length - 1) ? dialogueIndex : dialogueIndex + 1;  
+
+        gameSettings.currentDialogue = dialogueIndex;
 
         yield return new WaitForSeconds(0.2f);
 
@@ -67,7 +71,7 @@ public class CharacterDialogue : MonoBehaviour
     {
         dialogueCoroutine = TypeDialogue();
         currentPages = 1;
-        dialogueIndex = 0;
+        dialogueIndex = gameSettings.currentDialogue;
     }
 
     // Update is called once per frame

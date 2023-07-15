@@ -28,35 +28,7 @@ MonoBehaviour:
   rounded:
     m_OverrideState: 1
     m_Value: 0
---- !u!114 &-942423500055153616
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5e1dc532bcb41949b58bc4f2abfbb7e, type: 3}
-  m_Name: LensDistortion
-  m_EditorClassIdentifier: 
-  active: 1
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0.1
-  xMultiplier:
-    m_OverrideState: 1
-    m_Value: 0.5
-  yMultiplier:
-    m_OverrideState: 1
-    m_Value: 0.5
-  center:
-    m_OverrideState: 1
-    m_Value: {x: 0.5, y: 0.5}
-  scale:
-    m_OverrideState: 1
-    m_Value: 1
---- !u!114 &-484206022483802386
+--- !u!114 &-2556483043457312592
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,7 +43,35 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.14485443
+    m_Value: 0
+--- !u!114 &-1619267256902699158
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e1dc532bcb41949b58bc4f2abfbb7e, type: 3}
+  m_Name: LensDistortion
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 0
+    m_Value: 0
+  xMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  yMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  scale:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,8 +89,8 @@ MonoBehaviour:
   - {fileID: -2796562127237644206}
   - {fileID: 197517261639570954}
   - {fileID: 2291804813181871327}
-  - {fileID: -942423500055153616}
-  - {fileID: -484206022483802386}
+  - {fileID: -2556483043457312592}
+  - {fileID: -1619267256902699158}
 --- !u!114 &197517261639570954
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -112,10 +112,10 @@ MonoBehaviour:
     m_Value: 0.45
   intensity:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 2
   scatter:
     m_OverrideState: 1
-    m_Value: 0.6
+    m_Value: 0.647
   clamp:
     m_OverrideState: 1
     m_Value: 65472
@@ -193,7 +193,7 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9395242, z: 0.35186672, w: -0.39976746}
+    m_Value: {x: 1, y: 0.9395242, z: 0.35186672, w: -0.5018083}
   midtones:
     m_OverrideState: 1
     m_Value: {x: 1, y: 1, z: 1, w: -0.0020791292}

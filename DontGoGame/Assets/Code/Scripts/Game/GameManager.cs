@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] float damageEachNSecs = 10;
     [SerializeField] int damageTaken = 5;
     [SerializeField] bool useUI = false;
-    [SerializeField] int currentDialogue = 0;
-
+    [SerializeField] GameSettingsSO gameSettings;
+    int currentDialogue = 0;
     LampState currentState;
     GameObject player;
     public CharacterStatus playerStatus;
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     CharacterDialogue dialogueController;
     float nextDamage = 0;
     float lensDistortionAngle = 0.0f, lensDistortionIntensity = 0.0f, lensDistortionSpeed = 1f;
-
+    private bool showingText = false;
     float _monsterSpeed;
     float monsterSpeed {
         get {
@@ -63,8 +63,6 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
 
-        PlayerPrefs.DeleteAll();
-
         if (player != null) {
             playerStatus = player.GetComponent<CharacterStatus>();
             playerMotion = player.GetComponent<CharacterMotion>();
@@ -81,33 +79,47 @@ public class GameManager : MonoBehaviour
     {
         // Dim the global light
         globalLight.intensity = globalLightIntensity;
-
         currentState = lamp.state;
-
         nextDamage = damageEachNSecs;
-
         monsterSpeed = 1f;
 
-        StartCoroutine(StartDialogue());
+        currentDialogue = gameSettings.currentDialogue;
+
+        if((SceneManager.GetActiveScene().name == "MainMap" && currentDialogue == 0) || SceneManager.GetActiveScene().name == "SafeHouse")
+                StartCoroutine(StartDialogue());
     }
 
     void Update()
     {
-        SanityEffects();
-        LightEffects();
-
-        if(dialogueController.showingText)
+        if(!showingText)
         {
-            playerMotion.canMove = false;
+            SanityEffects();
+            LightEffects();
         }
-        else
-        {
-            if(dialogueBox.activeSelf)
-                dialogueBox.SetActive(false);
 
-            playerMotion.canMove = true;
+        if(showingText != dialogueController.showingText)
+        {
+            showingText = dialogueController.showingText;
+
+            if(dialogueController.showingText)
+            {
+                playerMotion.canMove = false;
+            }
+            else
+            {
+                if(dialogueBox.activeSelf)
+                    dialogueBox.SetActive(false);
+
+                playerMotion.canMove = true;
+            }
+            ToggleMonsters();
         }
-        
+    }  
+
+    void ToggleMonsters()
+    {
+        foreach(Monster_FSM monster in monsters)
+            monster.gameObject.SetActive(!monster.gameObject.activeSelf);
     }
 
     IEnumerator StartDialogue()
@@ -118,7 +130,8 @@ public class GameManager : MonoBehaviour
             dialogueBox.SetActive(true);
 
         dialogueController.LoadDialogue(currentDialogue);
-        currentDialogue++;
+        // currentDialogue++;
+        // gameSettings.currentDialogue = currentDialogue;
     }
 
     void SanityEffects()
@@ -180,6 +193,9 @@ public class GameManager : MonoBehaviour
     {
         if (lamp.state == LampState.OFF || lamp.state == LampState.ON)
         {
+            if(lamp.state == LampState.ON)
+                lamp.ConsumeOil();
+
             if(lamp.state != currentState)
             {
                 currentState = lamp.state;
@@ -203,15 +219,15 @@ public class GameManager : MonoBehaviour
         // Check if we are getting back from a house
         if (SceneManager.GetActiveScene().name == "MainMap") {
             // Get the index of the house to enter, or the default position
-            int houseIndex = PlayerPrefs.GetInt("HouseIndex", 0);
+            int houseIndex = gameSettings.houseIndex;
             // Set the position of the player
             player.transform.position = houseRestartPositions[houseIndex].position;
         }
-
-        // Restore the saved status of the player
-        playerStatus.health = PlayerPrefs.GetInt("Health", playerStatus.maxHealth);
-        playerStatus.oilCans = PlayerPrefs.GetInt("OilCans", playerStatus.maxOilCans);
-        playerStatus.sanity = PlayerPrefs.GetFloat("Sanity", playerStatus.maxSanity);
+        
+        // // Restore the saved status of the player
+        playerStatus.health = gameSettings.health;
+        playerStatus.oilCans = gameSettings.oilCans;
+        playerStatus.sanity = gameSettings.sanity;
     }
 
     void InitializeUI()
